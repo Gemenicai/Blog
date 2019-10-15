@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lq.blog.mapper.BlogMapper">
+  <resultMap id="BaseResultMap" type="com.lq.blog.po.Blog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="firstPicture" jdbcType="VARCHAR" property="firstpicture" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="views" jdbcType="INTEGER" property="views" />
+    <result column="appreciation" jdbcType="TINYINT" property="appreciation" />
+    <result column="shareStatement" jdbcType="TINYINT" property="sharestatement" />
+    <result column="commentabled" jdbcType="TINYINT" property="commentabled" />
+    <result column="published" jdbcType="TINYINT" property="published" />
+    <result column="recommend" jdbcType="TINYINT" property="recommend" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="typeId" jdbcType="BIGINT" property="typeid" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, content, firstPicture, flag, views, appreciation, shareStatement, commentabled, 
+    published, recommend, createTime, updateTime, typeId, userId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from _blog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from _blog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lq.blog.po.Blog">
+    insert into _blog (id, title, content, 
+      firstPicture, flag, views, 
+      appreciation, shareStatement, commentabled, 
+      published, recommend, createTime, 
+      updateTime, typeId, userId
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{firstpicture,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
+      #{appreciation,jdbcType=TINYINT}, #{sharestatement,jdbcType=TINYINT}, #{commentabled,jdbcType=TINYINT}, 
+      #{published,jdbcType=TINYINT}, #{recommend,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{typeid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lq.blog.po.Blog">
+    insert into _blog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="firstpicture != null">
+        firstPicture,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="views != null">
+        views,
+      </if>
+      <if test="appreciation != null">
+        appreciation,
+      </if>
+      <if test="sharestatement != null">
+        shareStatement,
+      </if>
+      <if test="commentabled != null">
+        commentabled,
+      </if>
+      <if test="published != null">
+        published,
+      </if>
+      <if test="recommend != null">
+        recommend,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="typeid != null">
+        typeId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="firstpicture != null">
+        #{firstpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null">
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="appreciation != null">
+        #{appreciation,jdbcType=TINYINT},
+      </if>
+      <if test="sharestatement != null">
+        #{sharestatement,jdbcType=TINYINT},
+      </if>
+      <if test="commentabled != null">
+        #{commentabled,jdbcType=TINYINT},
+      </if>
+      <if test="published != null">
+        #{published,jdbcType=TINYINT},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lq.blog.po.Blog">
+    update _blog
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="firstpicture != null">
+        firstPicture = #{firstpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null">
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="appreciation != null">
+        appreciation = #{appreciation,jdbcType=TINYINT},
+      </if>
+      <if test="sharestatement != null">
+        shareStatement = #{sharestatement,jdbcType=TINYINT},
+      </if>
+      <if test="commentabled != null">
+        commentabled = #{commentabled,jdbcType=TINYINT},
+      </if>
+      <if test="published != null">
+        published = #{published,jdbcType=TINYINT},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeid != null">
+        typeId = #{typeid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lq.blog.po.Blog">
+    update _blog
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      firstPicture = #{firstpicture,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      appreciation = #{appreciation,jdbcType=TINYINT},
+      shareStatement = #{sharestatement,jdbcType=TINYINT},
+      commentabled = #{commentabled,jdbcType=TINYINT},
+      published = #{published,jdbcType=TINYINT},
+      recommend = #{recommend,jdbcType=TINYINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      typeId = #{typeid,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
